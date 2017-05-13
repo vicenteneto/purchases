@@ -5,10 +5,10 @@ RSpec.describe 'Clients API', type: :request do
   let!(:clients) {create_list(:client, 10)}
   let(:client_id) {clients.first.id}
 
-  # Test suite for GET /clients
-  describe 'GET /clients' do
+  # Test suite for GET /v1/clients
+  describe 'GET /v1/clients' do
     # make HTTP get request before each example
-    before {get '/clients'}
+    before {get '/v1/clients'}
 
     it 'returns clients' do
       # Note `json` is a custom helper to parse JSON responses
@@ -21,9 +21,9 @@ RSpec.describe 'Clients API', type: :request do
     end
   end
 
-  # Test suite for GET /clients/:id
-  describe 'GET /clients/:id' do
-    before {get "/clients/#{client_id}"}
+  # Test suite for GET /v1/clients/:id
+  describe 'GET /v1/clients/:id' do
+    before {get "/v1/clients/#{client_id}"}
 
     context 'when the record exists' do
       it 'returns the client' do
@@ -49,13 +49,13 @@ RSpec.describe 'Clients API', type: :request do
     end
   end
 
-  # Test suite for POST /clients
-  describe 'POST /clients' do
+  # Test suite for POST /v1/clients
+  describe 'POST /v1/clients' do
     # valid payload
     let(:valid_attributes) {{first_name: 'John', last_name: 'Lennon', email: 'john.lennon@beatles.com'}}
 
     context 'when the request is valid' do
-      before {post '/clients', params: valid_attributes}
+      before {post '/v1/clients', params: valid_attributes}
 
       it 'creates a client' do
         expect(json['first_name']).to eq('John')
@@ -69,7 +69,7 @@ RSpec.describe 'Clients API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before {post '/clients', params: {first_name: 'Paul', last_name: 'McCartney'}}
+      before {post '/v1/clients', params: {first_name: 'Paul', last_name: 'McCartney'}}
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -82,12 +82,12 @@ RSpec.describe 'Clients API', type: :request do
     end
   end
 
-  # Test suite for PUT /clients/:id
-  describe 'PUT /clients/:id' do
+  # Test suite for PUT /v1/clients/:id
+  describe 'PUT /v1/clients/:id' do
     let(:valid_attributes) {{first_name: 'Paul'}}
 
     context 'when the record exists' do
-      before {put "/clients/#{client_id}", params: valid_attributes}
+      before {put "/v1/clients/#{client_id}", params: valid_attributes}
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -99,9 +99,9 @@ RSpec.describe 'Clients API', type: :request do
     end
   end
 
-  # Test suite for DELETE /clients/:id
-  describe 'DELETE /clients/:id' do
-    before {delete "/clients/#{client_id}"}
+  # Test suite for DELETE /v1/clients/:id
+  describe 'DELETE /v1/clients/:id' do
+    before {delete "/v1/clients/#{client_id}"}
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
