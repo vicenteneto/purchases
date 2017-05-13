@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170512004321) do
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
-    t.decimal "price", precision: 10
+    t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170512004321) do
   end
 
   create_table "purchases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.decimal "total", precision: 10
+    t.decimal "total", precision: 10, scale: 2
     t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
