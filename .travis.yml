@@ -1,5 +1,9 @@
 language: ruby
+services:
+  - mysql
 rvm:
   - 2.4.1
+before_script:
+  - rake db:setup
 script:
   - bundle exec rspec
