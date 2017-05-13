@@ -48,4 +48,13 @@ RSpec.describe 'Purchases API', type: :request do
       end
     end
   end
+
+  # Test suite for DELETE /v1/purchases/:id
+  describe 'DELETE /v1/purchases/:id' do
+    before {delete "/v1/purchases/#{purchase_id}"}
+
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
 end

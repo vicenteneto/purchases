@@ -1,6 +1,6 @@
 module Api::V1
   class PurchasesController < ApplicationController
-    before_action :set_purchase, only: [:show]
+    before_action :set_purchase, only: [:show, :destroy]
 
     # GET /v1/purchases
     def index
@@ -11,6 +11,12 @@ module Api::V1
     # GET /v1/purchases/:id
     def show
       json_response(@purchase)
+    end
+
+    # DELETE /v1/purchases/:id
+    def destroy
+      @purchase.destroy
+      head :no_content
     end
 
     private
