@@ -6,4 +6,8 @@ class Purchase < ApplicationRecord
 
   # validations
   validates_presence_of :total
+
+  def as_json(options)
+    super include: {purchase_details: {except: :purchase_id}}
+  end
 end
