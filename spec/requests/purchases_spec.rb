@@ -88,6 +88,23 @@ RSpec.describe 'Purchases API', type: :request do
     end
   end
 
+  # Test suite for PUT /v1/purchases/:id
+  describe 'PUT /v1/purchases/:id' do
+    let(:valid_attributes) {{client: client_id, description: 'Description', purchase_details: [{product: product_id, quantity: 1}]}}
+
+    context 'when the record exists' do
+      before {put "/v1/purchases/#{purchase_id}", params: valid_attributes}
+
+      it 'updates the record' do
+        expect(response.body).to be_empty
+      end
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
   # Test suite for DELETE /v1/purchases/:id
   describe 'DELETE /v1/purchases/:id' do
     before {delete "/v1/purchases/#{purchase_id}"}
