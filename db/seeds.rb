@@ -47,12 +47,12 @@ product_3 = Product.create({
                                price: 8_499.99
                            })
 
-purchase_1 = Purchase.create({client: client_1, total: 2_375.98})
+purchase_1 = Purchase.create({client: client_1, description: '2 ZenFones 3', total: 2_375.98})
 purchase_1_detail = PurchaseDetail.create({product: product_1, purchase: purchase_1, quantity: 2})
 
-purchase_2 = Purchase.create({client: client_2, total: 10_497.76})
+purchase_2 = Purchase.create({client: client_2, description: '1 ZenWatch 3 e 1 ZenBook 3', total: 10_497.76})
 purchase_2_detail_1 = PurchaseDetail.create({product: product_2, purchase: purchase_2, quantity: 1})
 purchase_2_detail_2 = PurchaseDetail.create({product: product_3, purchase: purchase_2, quantity: 1})
 
-purchase_3 = Purchase.create({client: client_3, total: 25_499.97})
+purchase_3 = Purchase.create({client: client_3, description: '3 ZenBooks 3', total: 25_499.97})
 purchase_3_detail = PurchaseDetail.create({product: product_3, purchase: purchase_3, quantity: 3})

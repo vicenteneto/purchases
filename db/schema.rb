@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170512004321) do
   end
 
   create_table "purchases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "description"
     t.decimal "total", precision: 10, scale: 2
     t.bigint "client_id"
     t.datetime "created_at", null: false

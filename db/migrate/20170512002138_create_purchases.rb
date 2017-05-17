@@ -1,6 +1,7 @@
 class CreatePurchases < ActiveRecord::Migration[5.1]
   def change
     create_table :purchases do |t|
+      t.string :description
       t.decimal :total
       t.references :client, foreign_key: true
 
