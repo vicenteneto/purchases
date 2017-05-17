@@ -4,8 +4,10 @@ class Purchase < ApplicationRecord
   has_many :purchase_details, dependent: :destroy
   has_many :products, through: :purchase_details, dependent: :destroy
 
+  accepts_nested_attributes_for :purchase_details
+
   # validations
-  validates_presence_of :total
+  validates_presence_of :description, :total
 
   def as_json(options)
     super include: {purchase_details: {except: :purchase_id}}
