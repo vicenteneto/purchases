@@ -72,6 +72,7 @@ List all purchases, in the order that they were created on *Purchases*.
 ```bash
 Status: 200 OK
 ```
+
 ```json
 [
   {
@@ -92,4 +93,127 @@ Status: 200 OK
     ]
   }
 ]
+```
+
+### Create a purchase
+
+``POST /purchases``
+
+##### Input
+
+| Name             | Type                     | Description                                        |
+|------------------|--------------------------|----------------------------------------------------|
+| client           | int                      | The ID of the customer who made the purchase.      |
+| description      | string                   | A brief description of the purchase.               |
+| purchase_details | List of Purchase Details | Each Purchase Detail represents one purchase item. |
+
+###### Purchase Detail model
+
+| Name     | Type | Description                      |
+|----------|------|----------------------------------|
+| product  | int  | The ID of the product purchased. |
+| quantity | int  | The amount of items purchased.   |
+
+##### Example
+
+```json
+{
+  "client": 1,
+  "description": "A brief description ...",
+  "purchase_details": [
+    {
+      "product": 1,
+      "quantity": 2
+    },
+    {
+      "product": 3,
+      "quantity": 5
+    }
+  ]
+}
+```
+
+##### Response
+
+```bash
+Status: 201 Created
+```
+
+```json
+{
+  "id": 1,
+  "description": "A brief description ...",
+  "total": "750.50",
+  "client_id": 1,
+  "created_at": "2017-05-19T00:30:42.000Z",
+  "updated_at": "2017-05-19T00:30:42.000Z",
+  "purchase_details": [
+    {
+      "id": 1,
+      "quantity": 2,
+      "product_id": 1,
+      "created_at": "2017-05-19T00:30:42.000Z",
+      "updated_at": "2017-05-19T00:30:42.000Z"
+    },
+    {
+      "id": 2,
+      "quantity": 5,
+      "product_id": 3,
+      "created_at": "2017-05-19T00:30:42.000Z",
+      "updated_at": "2017-05-19T00:30:42.000Z"
+    }
+  ]
+}
+```
+
+### Get a single purchase
+
+``GET /purchases/3``
+
+##### Response
+
+```bash
+Status: 200 OK
+```
+
+```json
+{
+  "id": 3,
+  "description": "3 ZenBooks 3",
+  "total": "25499.97",
+  "client_id": 3,
+  "created_at": "2017-05-17T01:03:06.000Z",
+  "updated_at": "2017-05-17T01:03:06.000Z",
+  "purchase_details": [
+    {
+      "id": 4,
+      "quantity": 3,
+      "product_id": 3,
+      "created_at": "2017-05-17T01:03:06.000Z",
+      "updated_at": "2017-05-17T01:03:06.000Z"
+    }
+  ]
+}
+```
+
+### Update a purchase
+
+``PUT /purchases/3``
+
+The input must follow the same structure of the [creation service](https://github.com/vicenteneto/purchases#create-a-purchase).
+
+##### Response
+
+```bash
+Status: 204 No content
+```
+
+### Update a purchase
+
+``DELETE /purchases/3``
+
+##### Response
+
+```bash
+Status: 204 No content
 ```
